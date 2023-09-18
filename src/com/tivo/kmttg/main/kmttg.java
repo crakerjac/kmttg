@@ -36,6 +36,7 @@ public class kmttg {
    static Boolean autoconflicts = false; // Special batch mode run for RPC conflicts
    static String autoskip = null; // Special batch mode for AutoSkip from SkipMode
    static String autoskipService = null; // Special batch mode for AutoSkip service
+   static Boolean require_meta = false;
       
    public static void main(String[] argv) {
       debug.enabled = false;
@@ -131,6 +132,12 @@ public class kmttg {
             gui_mode = false;
             config.LOOP = false;
          }
+         // Same as -b, but require Season and Episode in meta
+         else if (arg.equals("-z")) {
+            gui_mode = false;
+            config.LOOP = false;
+            require_meta = true;
+         }
          else if (arg.equals("-c")) {
             gui_mode = false;
             config.LOOP = false;
@@ -165,6 +172,7 @@ public class kmttg {
       System.out.println("-h => Print this help message\n");
       System.out.println("-a => Run in auto download batch mode - loop forever\n");
       System.out.println("-b => Run in auto download batch mode - single loop\n");
+      System.out.println("-z => Run in auto download batch mode - single loop, require SE in META\n");
       System.out.println("-c => Run auto-conflict resolver in batch mode - single run\n");
       System.out.println("-d => Enable verbose debug mode\n");
       System.out.println("-k \"tivoName\" => Run background mode AutoSkip service for given TiVo\n");

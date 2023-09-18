@@ -124,14 +124,14 @@ public class ffcut extends baseTask implements Serializable {
             log.error("Failed to start command: " + process.toString());
             process.printStderr();
             process = null;
-            jobMonitor.kill(job);
+            jobMonitor.removeFromJobList(job);
             return false;
          }
          return true;
       } else {
          log.error("Failed to create batch script file: " + batchFile);
          process = null;
-         jobMonitor.kill(job);
+         jobMonitor.removeFromJobList(job);
          return false;
       }
    }

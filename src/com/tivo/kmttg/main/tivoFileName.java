@@ -93,6 +93,13 @@ public class tivoFileName {
          }
       }
       entry.put("SeriesEpNumber", SeriesEpNumber);
+
+      if ((kmttg.require_meta == true) && (entry.get("SeriesEpNumber") == ""))
+      {
+         //Option requires Season and Episode
+         log.error("Missing season/episode: " + entry.get("startTime") + " | Suggestion | " + entry.get("title"));
+         return null;
+      }
       
       // Enter values for these names into keys hash
       String[] names = {
