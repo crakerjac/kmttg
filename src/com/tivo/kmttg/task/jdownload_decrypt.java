@@ -297,8 +297,11 @@ public class jdownload_decrypt extends baseTask implements Serializable {
          } else {
             log.print("---DONE--- job=" + job.type + " output=" + job.mpegFile);
             // Add auto history entry if auto downloads configured
-            if (file.isFile(config.autoIni))
-               auto.AddHistoryEntry(job);
+            if (config.persistQueue == true) {
+               if (file.isFile(config.autoIni)) {
+                  auto.AddHistoryEntry(job);
+               }
+            }
             
             // TivoWebPlus call to delete show on TiVo if configured
             if (job.twpdelete && ! config.rpcEnabled(job.tivoName)) {

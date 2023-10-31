@@ -24,6 +24,7 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.tivo.kmttg.main.auto;
 import com.tivo.kmttg.main.config;
 import com.tivo.kmttg.main.encodeConfig;
 import com.tivo.kmttg.main.jobData;
@@ -237,6 +238,13 @@ public class encode extends baseTask implements Serializable {
          } else {
             log.warn("encoding job completed: " + jobMonitor.getElapsedTime(job.time));
             log.print("---DONE--- job=" + job.type + " output=" + job.encodeFile);
+
+            // Add auto history entry if auto downloads configured
+            if (config.persistQueue == false) {
+               if (file.isFile(config.autoIni)) {
+                  auto.AddHistoryEntry(job);
+               }
+            }
             
             // Remove mpegFile.qsfix file if present
             String fix;            

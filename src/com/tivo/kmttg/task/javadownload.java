@@ -281,8 +281,11 @@ public class javadownload extends baseTask implements Serializable {
          } else {
             log.print("---DONE--- job=" + job.type + " output=" + job.tivoFile);
             // Add auto history entry if auto downloads configured
-            if (file.isFile(config.autoIni))
-               auto.AddHistoryEntry(job);
+            if (config.persistQueue == true) {
+               if (file.isFile(config.autoIni)) {
+                  auto.AddHistoryEntry(job);
+               }
+            }
          }
       }
       return false;
