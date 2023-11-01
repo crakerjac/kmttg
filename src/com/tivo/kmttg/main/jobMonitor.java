@@ -1362,6 +1362,14 @@ public class jobMonitor {
          job.mpegFile_cut = mpegFile_cut;
          job.encodeFile   = encodeFile;
          job.srtFile      = srtFile;
+         if (entry.containsKey("ProgramId"))
+            if (entry.get("ProgramId") != null) 
+               job.ProgramId = entry.get("ProgramId");
+         if (useProgramId_unique && entry.containsKey("ProgramId_unique"))
+            job.ProgramId_unique = entry.get("ProgramId_unique");
+         if (entry.containsKey("title"))
+            job.title = entry.get("title");
+         job.tivoFile     = tivoFile;
          if (config.VrdEncode == 1 && encodeConfig.getCommandName(encodeName) == null) {
             // VRD encode selected => vrdencode job
             job.type      = "vrdencode";
