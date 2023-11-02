@@ -97,7 +97,12 @@ public class tivoFileName {
       if ((kmttg.require_meta == true) && (entry.get("SeriesEpNumber") == ""))
       {
          //Option requires Season and Episode
-         log.error("Missing season/episode: " + entry.get("startTime") + " | Suggestion | " + entry.get("title"));
+         if (entry.containsKey("suggestion")) {
+            log.error("Missing season/episode: " + entry.get("startTime") + " | Suggestion | " + entry.get("title"));
+         }
+         else {
+            log.error("Missing season/episode: " + entry.get("startTime") + " | Recording | " + entry.get("title"));
+         }
          return null;
       }
       
