@@ -484,7 +484,8 @@ public class jobMonitor {
       // Save job queue backup upon change in case of an unclean exit
       // Do not save queue if loading jobs from the queue file
       // Do not save queue during the initial addition of the NPL jobs
-      if (config.persistQueue && !_isLoadingQueue && !kmttg._startingUp)
+      // if (config.persistQueue && !_isLoadingQueue && !kmttg._startingUp)
+      if (!_isLoadingQueue && !kmttg._startingUp)
     		jobMonitor.saveAllJobs();
    }
    
@@ -514,7 +515,8 @@ public class jobMonitor {
       // Save job queue backup upon change in case of an unclean exit
       // Do not save job queue if shutting down and cleaning up queue
       // Do not save job queue if starting up and initial NPL jobs finish early
-      if (config.persistQueue && !kmttg._shuttingDown && !kmttg._startingUp)
+      // if (config.persistQueue && !kmttg._shuttingDown && !kmttg._startingUp)
+      if (!kmttg._shuttingDown && !kmttg._startingUp)
     		jobMonitor.saveAllJobs();
    }
    
